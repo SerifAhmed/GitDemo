@@ -3,6 +3,7 @@ package JavaPrograms;
 public class ArrangeCharacters {
 
 	public static void main(String[] args){
+		System.out.println("ArrangeCharacters Program");
         String str = "Auto123Mat!@#ion";
         String vowels="";
         String consonants="";

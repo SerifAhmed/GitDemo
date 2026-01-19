@@ -3,6 +3,7 @@ package JavaPrograms;
 public class BubbleSortAlphabets {
 	
 	public static void main(String[] args) {
+		System.out.println("BubbleSortAlphabets Program");
         char[] letters = {'a','c','d','b','e','f','i','j','g','h'};
         int n = letters.length;
         // Bubble sort logic
