@@ -1,0 +1,7 @@
+When we write Student obj = (Student)ois.readObject();
+the readObject() method always gives back a generic Object, because Java doesn’t know what kind of object is inside the file, 
+so we have to cast it to Student to tell Java “this Object is really a Student.” 
+
+The try-catch is used because file operations can easily go wrong (like file not found, file corrupted, or permission issues), 
+and Java forces us to handle those possible errors safely — if something goes wrong, the catch block will run instead of crashing 
+the whole program.

@@ -1,0 +1,188 @@
+Syntax-->
+interface InterfaceName {
+    // abstract method
+    void method1();
+
+    // default method
+    default void method2() {
+        System.out.println("Default method in interface");
+    }
+
+    // static method
+    static void method3() {
+        System.out.println("Static method in interface");
+    }
+}
+
+Example 1 — Basic Interface-->
+interface Animal {
+    void eat(); // abstract method
+    void sleep();
+}
+
+class Dog implements Animal {
+    public void eat() {
+        System.out.println("Dog is eating");
+    }
+    public void sleep() {
+        System.out.println("Dog is sleeping");
+    }
+}
+
+public class InterfaceDemo {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        myDog.eat();
+        myDog.sleep();
+    }
+}
+
+Example 2 — Multiple Inheritance Using Interfaces-->
+interface Printer {
+    void print();
+}
+
+interface Scanner {
+    void scan();
+}
+
+class Machine implements Printer, Scanner {
+    public void print() {
+        System.out.println("Printing document");
+    }
+    public void scan() {
+        System.out.println("Scanning document");
+    }
+}
+
+public class MultipleInterfaceDemo {
+    public static void main(String[] args) {
+        Machine m = new Machine();
+        m.print();
+        m.scan();
+    }
+}
+
+Example 3 — Default and Static Methods in Interface-->
+interface Vehicle {
+    void start();
+
+    default void horn() { // default method
+        System.out.println("Beep! Beep!");
+    }
+
+    static void service() { // static method
+        System.out.println("Vehicle servicing...");
+    }
+}
+
+class Car implements Vehicle {
+    public void start() {
+        System.out.println("Car starting...");
+    }
+}
+
+public class InterfaceJava8Demo {
+    public static void main(String[] args) {
+        Car car = new Car();
+        car.start();
+        car.horn(); // default method
+
+        Vehicle.service(); // static method call
+    }
+}
+
+Example 4 — Interface Inheritance-->
+interface A {
+    void methodA();
+}
+
+interface B extends A {
+    void methodB();
+}
+
+class MyClass implements B {
+    public void methodA() {
+        System.out.println("Method A");
+    }
+    public void methodB() {
+        System.out.println("Method B");
+    }
+}
+
+public class InterfaceInheritanceDemo {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        obj.methodA();
+        obj.methodB();
+    }
+}
+
+Q: Can an interface have a constructor?
+A: No, because interfaces cannot be instantiated.
+
+Q: How is WebDriver an interface in Selenium useful?
+A: It allows automation scripts to work with any browser driver without code changes, achieving browser independence.
+
+Q: Can we have private methods in an interface?
+A: Yes, from Java 9 onwards (used for internal helper methods inside the interface).
+These methods are like supporting actors, they help the default & static methods of interface to perform better.
+
+Q: What happens if a class implements multiple interfaces with the same method signature?
+A: The class needs to provide only one implementation.
+Note: If two interfaces have the same default method signature the class that implements both the interfaces must override 
+		to resolve the conflict.
+		eg.
+		interface A{
+			default void show(){
+				System.out.println("A's show");
+			}
+		}
+		interface B{
+			default void show(){
+				System.out.println("B's show");
+			}
+		}
+		class C implements A,B{
+			@Override
+			public void show(){
+				System.out.println("C's show");	//must override, otherwise compile error
+			}
+		}
+
+How static methods behave??
+Static methods belong to the class or interface itself, not to any object made from it.
+That means they live in the class/interface, not in the object’s memory.
+Since they belong to the interface, the correct way to call them is InterfaceName.methodName()
+
+Variables in an Interface-->
+Every variable declared in an interface is by default: public; static; final
+This means:
+It’s a constant (must be initialized at the time of declaration).
+It’s shared by all implementing classes.
+It can be accessed without creating an object.
+
+interface MyInterface {
+    int MAX_VALUE = 100; // public static final is implied
+}
+
+class MyClass implements MyInterface {
+    void printMax() {
+        // You can use it directly
+        System.out.println("MAX_VALUE = " + MAX_VALUE);
+
+        // Or use InterfaceName.variableName
+        System.out.println("From interface: " + MyInterface.MAX_VALUE);
+    }
+}
+
+public class Demo {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        obj.printMax();
+
+        // Directly accessing from interface
+        System.out.println("Direct access: " + MyInterface.MAX_VALUE);
+    }
+}
+

@@ -1,0 +1,202 @@
+1. What is Inheritance in Java?
+Inheritance means one class acquiring properties and behaviors (methods) from another class.
+It helps in code reusability and method overriding.
+
+Parent class / Superclass → The class whose features are inherited.
+Child class / Subclass → The class which inherits from the parent class.
+
+We use the keyword 'extends' to implement inheritance.
+
+Multiple Inheritance with Classes->
+class X {
+    //Class X Members
+}
+
+class Y {
+    //Class Y Members
+}
+
+class Z extends X, Y {
+    //Class Z Members
+}
+Java does not support multiple inheritance with classes directly.
+So, class Z extends X, Y will give a compile-time error.
+If you want multiple inheritance in Java, you must use interfaces.
+
+Variable Hiding in Inheritance->
+class A {
+    int i = 10;
+}
+
+class B extends A {
+    int i = 20;
+}
+
+public class MainClass {
+    public static void main(String[] args) {
+        A a = new B();
+        System.out.println(a.i);
+    }
+}
+
+A a = new B(); → Reference type is A, object type is B.
+Variable access in Java is determined by the reference type, not the object type.
+Since a is of type A, a.i will refer to int i in class A, not class B.
+Output → 10
+
+Java supports:
+
+Single Inheritance → One parent → one child.
+
+Multilevel Inheritance → Inheritance chain: Grandparent → Parent → Child.
+
+Hierarchical Inheritance → One parent → multiple children.
+
+Multiple Inheritance → Only via interfaces, not classes.
+
+Single Inheritance
+One parent → one child.
+// Parent class
+class Animal {
+    void eat() {
+        System.out.println("Animal is eating...");
+    }
+}
+
+// Child class
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog is barking...");
+    }
+}
+
+public class SingleInheritanceExample {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.eat();  // Inherited from Animal
+        d.bark(); // Defined in Dog
+    }
+}
+
+Multilevel Inheritance
+Inheritance chain: Grandparent → Parent → Child.
+class Animal {
+    void eat() {
+        System.out.println("Animal is eating...");
+    }
+}
+
+class Mammal extends Animal {
+    void walk() {
+        System.out.println("Mammal is walking...");
+    }
+}
+
+class Dog extends Mammal {
+    void bark() {
+        System.out.println("Dog is barking...");
+    }
+}
+
+public class MultilevelInheritanceExample {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.eat();  // From Animal
+        d.walk(); // From Mammal
+        d.bark(); // From Dog
+    }
+}
+
+Hierarchical Inheritance
+One parent → multiple children.
+class Animal {
+    void eat() {
+        System.out.println("Animal is eating...");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog is barking...");
+    }
+}
+
+class Cat extends Animal {
+    void meow() {
+        System.out.println("Cat is meowing...");
+    }
+}
+
+public class HierarchicalInheritanceExample {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.eat();
+        d.bark();
+
+        Cat c = new Cat();
+        c.eat();
+        c.meow();
+    }
+}
+
+Multiple Inheritance (via Interfaces — allowed in Java)
+Java does not support multiple inheritance with classes, but it allows it using interfaces.
+interface CanRun {
+    void run();
+}
+
+interface CanSwim {
+    void swim();
+}
+
+class Amphibian implements CanRun, CanSwim {
+    public void run() {
+        System.out.println("Running on land...");
+    }
+    public void swim() {
+        System.out.println("Swimming in water...");
+    }
+}
+
+public class MultipleInheritanceExample {
+    public static void main(String[] args) {
+        Amphibian a = new Amphibian();
+        a.run();
+        a.swim();
+    }
+}
+
+Hybrid Inheritance (Mix of types — allowed only with interfaces)
+This is a combination of multiple + hierarchical.
+interface Animal {
+    void eat();
+}
+
+interface CanFly {
+    void fly();
+}
+
+class Bird implements Animal, CanFly {
+    public void eat() {
+        System.out.println("Bird is eating...");
+    }
+    public void fly() {
+        System.out.println("Bird is flying...");
+    }
+}
+
+class Eagle extends Bird {
+    void hunt() {
+        System.out.println("Eagle is hunting...");
+    }
+}
+
+public class HybridInheritanceExample {
+    public static void main(String[] args) {
+        Eagle e = new Eagle();
+        e.eat();
+        e.fly();
+        e.hunt();
+    }
+}
+
