@@ -5,7 +5,8 @@ import java.util.Arrays;
 public class AnagramCheck {
 	
 	public static void main(String[] args) {
-
+		//Anagram
+		System.out.println("Anagram Program");
         String s1 = "listen";
         String s2 = "silent";
 
