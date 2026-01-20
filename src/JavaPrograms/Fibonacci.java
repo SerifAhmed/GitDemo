@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Fibonacci {
 	
 	 public static void main(String[] args){
+		 System.out.println("Fibonacci");
 	        int a=0, b=1, c, term;
 	        Scanner scan = new Scanner(System.in);
 	        System.out.print("Enter the term: ");

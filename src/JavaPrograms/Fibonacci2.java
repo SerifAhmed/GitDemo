@@ -3,6 +3,7 @@ package JavaPrograms;
 public class Fibonacci2 {
 	
 	public static void main(String[] args) {
+		System.out.println("Fibonacci2");
 		int a=0,b=1,c;
 		System.out.print("Fibonacci Series till 100 are: ");
 		
